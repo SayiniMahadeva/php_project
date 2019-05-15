@@ -1,0 +1,150 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jan 19, 2019 at 05:16 AM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `school`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `academic_staff`
+--
+
+DROP TABLE IF EXISTS `academic_staff`;
+CREATE TABLE IF NOT EXISTS `academic_staff` (
+  `astaff_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `gender` varchar(50) NOT NULL,
+  `course_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`astaff_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `academic_staff`
+--
+
+INSERT INTO `academic_staff` (`astaff_id`, `name`, `address`, `gender`, `course_name`) VALUES
+(1, 'sarmi', 'meesa', 'gfgyuhj', 'maths'),
+(3, 'ranjitha', 'chavakachcheri', 'female', 'science');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `Admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`Admin_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`Admin_id`, `username`, `password`, `email`) VALUES
+(1, 'saji', '123', 'sa@gmail.com'),
+(2, 'sayi', '81dc9bdb52d04dc20036dbd8313ed055', 's@gmail.com'),
+(3, 'shamugh', '6562c5c1f33db6e05a082a88cddab5ea', 'aa@gmail.com'),
+(4, 'sdfghj', 'def7924e3199be5e18060bb3e1d547a7', 'sdfghj@gmail.com'),
+(5, 'pira', 'd3b1b1a5033de059b35e6ee0b0d51041', 'p@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `examination`
+--
+
+DROP TABLE IF EXISTS `examination`;
+CREATE TABLE IF NOT EXISTS `examination` (
+  `examination_id` int(11) NOT NULL AUTO_INCREMENT,
+  `marks` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  PRIMARY KEY (`examination_id`),
+  KEY `student_id` (`student_id`,`class_id`),
+  KEY `class_id` (`class_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `non_academic_staff`
+--
+
+DROP TABLE IF EXISTS `non_academic_staff`;
+CREATE TABLE IF NOT EXISTS `non_academic_staff` (
+  `nstaff_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `gender` varchar(50) NOT NULL,
+  PRIMARY KEY (`nstaff_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `non_academic_staff`
+--
+
+INSERT INTO `non_academic_staff` (`nstaff_id`, `name`, `address`, `gender`) VALUES
+(4, 'sajitha', 'meesaali', 'female'),
+(5, 'sayini', 'meesali', 'male'),
+(6, 'sarmi', 'mghj', 'male'),
+(7, '', '', ''),
+(8, '', '', ''),
+(9, '', '', ''),
+(10, '', '', ''),
+(11, 'rtyjkjl', 'rtyui', 'etryul'),
+(12, 'latha', 'female', 'usan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE IF NOT EXISTS `student` (
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `grade` varchar(10) NOT NULL,
+  `phone_no` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  PRIMARY KEY (`student_id`),
+  KEY `class_id` (`class_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`student_id`, `name`, `address`, `grade`, `phone_no`, `class_id`) VALUES
+(12, 'byra', 'dfgh', '', 567, 6);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
